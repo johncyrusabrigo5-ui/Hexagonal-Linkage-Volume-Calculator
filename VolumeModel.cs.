@@ -1,0 +1,27 @@
+using System;
+
+namespace VolumeApp.Models
+{
+    public class VolumeModel
+    {
+        public double V1 { get; set; }
+        public double V2 { get; set; }
+        public double Result { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public void Calculate()
+        {
+            if (V2 < V1)
+            {
+                ErrorMessage = "Invalid input: Final level (V2) must be greater than or equal to Initial level (V1).";
+                Result = 0;
+            }
+            else
+            {
+                Result = V2 - V1; // cm³ implied
+                ErrorMessage = "";
+            }
+        }
+    }
+}
