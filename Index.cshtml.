@@ -1,0 +1,120 @@
+@model VolumeApp.Models.VolumeModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hexagonal Linkage Volume Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #0f1f17;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #1b3b2a;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 400px;
+            margin: 40px auto;
+            background-color: #15261d;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #2e5d44;
+        }
+
+        .box {
+            background-color: #1b3b2a;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-left: 5px solid #2ecc71;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #2ecc71;
+            border: none;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #1b3b2a;
+            border-left: 5px solid #2ecc71;
+        }
+
+        .error {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #3b1b1b;
+            border-left: 5px solid #ff4d4d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        Hexagonal Linkage Volume Calculator
+    </div>
+
+    <div class="container">
+
+        <div class="box">
+            <strong>Instructions:</strong><br />
+            Enter Initial Level (V1) and Final Level (V2). The system calculates volume using V = V2 - V1 (cm³).
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            <label>Initial Level (V1):</label>
+            @Html.TextBoxFor(m => m.V1)
+
+            <label>Final Level (V2):</label>
+            @Html.TextBoxFor(m => m.V2)
+
+            <input type="submit" value="Calculate Volume" />
+        }
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="error">
+                @Model.ErrorMessage
+            </div>
+        }
+        else if (Model.Result != 0)
+        {
+            <div class="result">
+                Result (Volume): @Model.Result cm³
+            </div>
+        }
+
+    </div>
+
+</body>
+</html>
