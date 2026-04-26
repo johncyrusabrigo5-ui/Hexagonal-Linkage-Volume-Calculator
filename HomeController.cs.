@@ -1,0 +1,22 @@
+using System;
+using System.Web.Mvc;
+using VolumeApp.Models;
+
+namespace VolumeApp.Controllers
+{
+    public class HomeController : Controller
+    {
+        public ActionResult Index()
+        {
+            VolumeModel model = new VolumeModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index(VolumeModel model)
+        {
+            model.Calculate();
+            return View(model);
+        }
+    }
+}
